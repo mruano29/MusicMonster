@@ -1,0 +1,7 @@
+type Query {
+  loginQ: String
+}
+
+type Mutation {
+    loginM: String
+}

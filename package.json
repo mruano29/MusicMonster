@@ -8,6 +8,7 @@
     "build": "lerna exec --parallel -- babel --root-mode upward src -d lib --ignore **/*.story.js,**/*.spec.js",
     "bootstrap": "lerna bootstrap --use-workspaces",
     "dev": "start-storybook -p 5555",
+    "server": "nodemon packages/server/src/index.js",
     "coverage": "jest --coverage",
     "unit": "jest"
   },
@@ -31,5 +32,8 @@
     "react-test-renderer": "^16.8.6",
     "styled-components": "^4.3.1",
     "webpack": "^4.34.0"
+  },
+  "dependencies": {
+    "graphql": "^14.3.1"
   }
 }
