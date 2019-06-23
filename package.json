@@ -10,7 +10,9 @@
     "dev": "start-storybook -p 5555",
     "server": "nodemon packages/server/src/index.js",
     "coverage": "jest --coverage",
-    "unit": "jest"
+    "unit": "jest",
+    "start:client": "cd packages/client && webpack-dev-server --open --mode development",
+    "build:client": "cd packages/client && webpack --mode production "
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

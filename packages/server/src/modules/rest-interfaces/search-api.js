@@ -7,7 +7,7 @@ class SearchAPI extends RESTDataSource {
 
     willSendRequest(request) {
         const BearerCode =
-          "BQByggbA8YvbvQypSv8oI1anHvJdmMDvFKvDnQAYL_qi12nBpznKzBkkZ8cLbJDSNby5DjYsBdJPVtkYSxs";
+          "BQDj-73gIWFGHct74STvILHhKlddyxfBei-UU1NUdwCHHSXlP4SclzJllOOYvG1izMt13GIQxxJbq18XiBU";
         request.headers.set("Authorization", `Bearer ${BearerCode}`);
     }
 

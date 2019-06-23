@@ -1,13 +1,18 @@
-import styled from "styled-components";
+import React from "react";
+import ReactDOM from "react-dom";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import Wrapper from "./Wrapper.jsx";
 
-const Input = styled.input`
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 16px;
-  font-weight: 300;
-  padding: 10px 40px 10px 10px;
-  width: 150px;
-`;
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql"
+});
 
-export default Input;
+const App = () => (
+  <ApolloProvider client={client}>
+    <Wrapper />
+  </ApolloProvider>
+);
+
+
+ReactDOM.render(<App />, document.querySelector("#app"));
