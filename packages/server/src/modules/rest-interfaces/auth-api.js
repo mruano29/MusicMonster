@@ -1,20 +1,28 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
+const btoa = require('btoa')
 
-class MoviesAPI extends RESTDataSource {
+class AuthAPI extends RESTDataSource {
     constructor() {
         super();
-        // this.baseURL = 'https://movies-api.example.com/';
     }
 
-    async getAuth(id) {
-        return this.get(`auth/${id}`);
+    willSendRequest(request) {
+        const clientId = process.env.CLIENT_ID;
+        const clientSecret = process.env.CLIENT_SECRET;
+        const encodedSecret = btoa(`${clientId}:${clientSecret}`);
+
+        request.headers.set("Content-Type", 'application/x-www-form-urlencoded');
+        request.headers.set("Authorization", `Basic ${encodedSecret}`);
     }
 
-    // async getMostViewedMovies(limit = 10) {
-    //     const data = await this.get('movies', {
-    //         per_page: limit,
-    //         order_by: 'most_viewed',
-    //     });
-    //     return data.results;
-    // }
+    async getAuth() {
+
+        const authURL = "https://accounts.spotify.com/api/token";
+
+        const res = await this.post(authURL, "grant_type=client_credentials");
+
+        return res
+    }
 }
+
+module.exports = AuthAPI;

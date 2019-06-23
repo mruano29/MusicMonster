@@ -1,0 +1,69 @@
+type Query {
+    search(search: ID!): search
+}
+
+type search {
+    # albums: album
+    # artist: artist
+    tracks: track
+    # playlist: playlist
+}
+
+type track {
+    href: String
+    items: [trackItem]
+}
+
+type trackItem {
+    album: albumItem
+    artists: [artistDescription]
+    available_markets: [String]
+    disc_number: Int
+    duration_ms: Int
+    explicit: Boolean
+    external_urls: spotifyURL
+    href: String
+    id: String
+    name: String
+    popularity: Int
+    preview_url: String
+    track_number: Int
+    type: String
+    uri: String
+}
+
+type album {
+    href: String
+    items: [albumItem]
+}
+
+type albumItem {
+    album_type: String
+    name: String
+    type: String
+    artists: [artistDescription]
+    available_markets: [String]
+    external_urls: spotifyURL
+}
+
+type artistDescription {
+    id: String
+    name: String
+    type: String
+    uri: String
+    href: String
+    external_urls: spotifyURL
+}
+
+type spotifyURL {
+    spotify: String
+}
+
+type artist {
+    href: String
+    items: [artistItem]
+}
+
+type artistItem {
+    name: String
+}
