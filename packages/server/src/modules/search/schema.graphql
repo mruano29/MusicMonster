@@ -1,5 +1,5 @@
 type Query {
-    search(search: ID!): search
+    search(search: String!, token: String!): search
 }
 
 type search {
