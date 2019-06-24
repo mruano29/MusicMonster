@@ -1,5 +1,6 @@
 type Query {
     search(search: String!, token: String!): search
+    trackFeatures(trackId: String!, token: String!): trackFeatures
 }
 
 type search {
@@ -66,4 +67,25 @@ type artist {
 
 type artistItem {
     name: String
+}
+
+type trackFeatures {
+    duration_ms: Int
+    key: Int
+    mode: Int
+    time_signature: Int
+    acousticness: Float
+    danceability: Float
+    energy: Float
+    instrumentalness: Float
+    liveness: Float
+    loudness: Float
+    speechiness: Float
+    valence: Float
+    tempo: Float
+    id: String
+    uri: String
+    track_href: String
+    analysis_url: String
+    type: String
 }

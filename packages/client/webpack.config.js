@@ -15,6 +15,10 @@ module.exports = {
             use: [{
                 loader: "html-loader"
                 }]
+            },
+            {
+                test: /\.css$/,
+                use: 'css-loader'
             }]
     },
     plugins: [
