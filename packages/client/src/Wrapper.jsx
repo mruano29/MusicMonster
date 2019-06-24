@@ -35,7 +35,6 @@ class Wrapper extends Component {
   render() {
     const { search , trackId } = this.state;
 
-
     const tokenQuery = gql`
       {
         authToken {
@@ -91,8 +90,6 @@ class Wrapper extends Component {
 
     let token;
 
-    console.log("token 1 ", token)
-
     return (
       <div className="wrapper">
         <div>
@@ -116,7 +113,7 @@ class Wrapper extends Component {
                               value={v.id}
                               onClick={this.onClick}
                             >
-                              {v.name}
+                              {`track: ${v.name} | artist: ${v.artists[0].name}`}
                             </li>
                           );
                         })}
@@ -138,10 +135,8 @@ class Wrapper extends Component {
                 return (
                   <Query query={trackFeatures} variables={{ trackId, token }}>
                     {({ loading, error, data }) => {
-                      console.log("token 2", token);
                       if (loading) return <p>Loading...</p>;
                       if (error) return <p>Error :(</p>;
-                        console.log(Object.keys(data.trackFeatures))
                       return <ul>
                         {Object.keys(data.trackFeatures).map(v => {
                           return (
