@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import Input from "./components/Input.jsx";
+import SearchResults from './components/SearchResults.jsx'
+import TrackFeatures from "./components/TrackFeatures.jsx";
 
 import './styles.css';
-
 
 class Wrapper extends Component {
     constructor(props) {
@@ -43,56 +44,10 @@ class Wrapper extends Component {
       }
     `;
 
-    const query = gql`
-      query search($search: String!, $token: String!) {
-        search(search: $search, token: $token) {
-          tracks {
-            href
-            items {
-              name
-              album {
-                name
-              }
-              artists {
-                name
-              }
-              id
-            }
-          }
-        }
-      }
-    `;
-
-    const trackFeatures = gql`
-      query trackFeatures($trackId: String!, $token: String!) {
-        trackFeatures(trackId: $trackId, token: $token) {
-          duration_ms
-          key
-          mode
-          time_signature
-          acousticness
-          danceability
-          energy
-          instrumentalness
-          liveness
-          loudness
-          speechiness
-          valence
-          tempo
-          id
-          uri
-          track_href
-          analysis_url
-          type
-        }
-      }
-    `;
-
     let token;
 
     return (
-      <div className="wrapper">
-        <div>
+      <div>
           <Input onKeyDown={this.onKeyDown} />
           <Query query={tokenQuery}>
             {({ loading, error, data }) => {
@@ -100,57 +55,13 @@ class Wrapper extends Component {
               if (error) return <p>Error :(</p>;
               token = data.authToken.access_token;
               return (
-                <Query query={query} variables={{ search, token }}>
-                  {({ loading, error, data }) => {
-                    if (loading) return <p>Loading...</p>;
-                    if (error) return <p>Error :(</p>;
-                    return (
-                      <ul>
-                        {data.search.tracks.items.map((v, index) => {
-                          return (
-                            <li
-                              key={v.id}
-                              value={v.id}
-                              onClick={this.onClick}
-                            >
-                              {`track: ${v.name} | artist: ${v.artists[0].name}`}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    );
-                  }}
-                </Query>
+                <div className="wrapper">
+                  <SearchResults token={token} search={search} onClick={this.onClick}/>
+                  {trackId && <TrackFeatures token={token} trackId={trackId}/>}
+                </div>
               );
             }}
           </Query>
-        </div>
-        {trackId && (
-          <div>
-            <Query query={tokenQuery}>
-              {({ loading, error, data }) => {
-                if (loading) return <p>Loading...</p>;
-                if (error) return <p>Error :(</p>;
-                token = data.authToken.access_token;
-                return (
-                  <Query query={trackFeatures} variables={{ trackId, token }}>
-                    {({ loading, error, data }) => {
-                      if (loading) return <p>Loading...</p>;
-                      if (error) return <p>Error :(</p>;
-                      return <ul>
-                        {Object.keys(data.trackFeatures).map(v => {
-                          return (
-                            <li>{`${v}: ${data.trackFeatures[v]}`}</li>
-                          );
-                        })}
-                      </ul>
-                    }}
-                  </Query>
-                );
-              }}
-              </Query>
-          </div>
-        )}
       </div>
     );
   }
