@@ -47,21 +47,29 @@ class Wrapper extends Component {
     let token;
 
     return (
-      <div>
+      <div className="wrapper">
+        <div className="input-bar">
           <Input onKeyDown={this.onKeyDown} />
-          <Query query={tokenQuery}>
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error :(</p>;
-              token = data.authToken.access_token;
-              return (
-                <div className="wrapper">
-                  <SearchResults token={token} search={search} onClick={this.onClick}/>
-                  {trackId && <TrackFeatures token={token} trackId={trackId}/>}
-                </div>
-              );
-            }}
-          </Query>
+        </div>
+        <Query query={tokenQuery}>
+          {({ loading, error, data }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>Error :(</p>;
+            token = data.authToken.access_token;
+            return (
+              <div className="response-containers">
+                <SearchResults
+                  token={token}
+                  search={search}
+                  onClick={this.onClick}
+                />
+                {trackId && (
+                  <TrackFeatures token={token} trackId={trackId} />
+                )}
+              </div>
+            );
+          }}
+        </Query>
       </div>
     );
   }

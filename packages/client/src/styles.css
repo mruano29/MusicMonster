@@ -1,5 +1,19 @@
-.wrapper {
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-around; */
+body {
+    background-color: #323234;
+    color: #bebebe;
+    padding: 15px;
+    margin: 0;
+}
+
+.response-containers {
+    display: grid;
+    grid-column-gap: 50px;
+}
+
+.search-results {
+    grid-column-start: 1;
+}
+
+.track-features {
+    grid-column-start: 2;
 }

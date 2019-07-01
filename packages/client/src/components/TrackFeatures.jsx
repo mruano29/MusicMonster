@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
+import "../styles.css";
+
 class trackFeatures extends Component {
   constructor(props) {
     super(props);
@@ -40,13 +42,13 @@ class trackFeatures extends Component {
             {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>Error :(</p>;
-                return <ul>
+                return <div className="track-features">
                     {Object.keys(data.trackFeatures).map(v => {
                         return (
-                            <li key={v}>{`${v}: ${data.trackFeatures[v]}`}</li>
+                            <div key={v}>{`${v}: ${data.trackFeatures[v]}`}</div>
                         );
                     })}
-                </ul>
+                </div>
             }}
         </Query>
     );

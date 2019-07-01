@@ -1,0 +1,22 @@
+FROM node:10-alpine AS midbase
+WORKDIR /code
+RUN npm install -g nodemon
+COPY package.json ./package.json
+
+# Get dependencies
+FROM midbase AS middeps
+WORKDIR /code
+RUN yarn start:server
+RUN cp -R node_modules prod_node_modules && \
+  cp yarn.lock prod_yarn.lock
+RUN yarn --silent
+
+# Developer image
+FROM midbase AS middev
+WORKDIR /code
+COPY . .
+COPY --from=middeps /code/node_modules node_modules
+COPY --from=middeps /code/yarn.lock yarn.lock
+EXPOSE 4000
+VOLUME /code/src
+CMD ["yarn", "start"]

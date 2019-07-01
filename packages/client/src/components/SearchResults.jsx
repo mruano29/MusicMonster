@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
+import '../styles.css'
+
 class SearchResults extends Component {
     constructor(props) {
         super(props)
@@ -37,19 +39,19 @@ class SearchResults extends Component {
                     if (loading) return <p>Loading...</p>;
                     if (error) return <p>Error :(</p>;
                     return (
-                        <ul>
+                        <div className="search-results">
                             {data.search.tracks.items.map((v, index) => {
                                 return (
-                                    <li
+                                    <div
                                         key={v.id}
                                         value={v.id}
                                         onClick={onClick}
                                     >
                                         {`track: ${v.name} | artist: ${v.artists[0].name}`}
-                                    </li>
+                                    </div>
                                 );
                             })}
-                        </ul>
+                        </div>
                     );
                 }}
             </Query>
