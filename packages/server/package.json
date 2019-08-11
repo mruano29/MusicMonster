@@ -12,7 +12,6 @@
         "require-graphql-file": "^1.0.1"
     },
     "devDependencies": {
-        "@configs/eslint": "*",
         "eslint": "^6.1.0",
         "eslint-plugin-import": "^2.18.2"
     }
