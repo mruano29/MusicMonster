@@ -14,6 +14,46 @@ body {
     grid-column-start: 1;
 }
 
+.search-results-item__song {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.search-results-item__artist {
+    font-size: 12px;
+}
 .track-features {
     grid-column-start: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.search-results-item {
+    padding: 3px;
+    margin: 3px 0;
+}
+
+.features-box {
+    height: 75px;
+    width: 135px;
+    display: flex;
+    flex-direction: column;
+    margin: 12px;
+    border: 1px solid #535357;
+    border-radius: 3px;
+    padding: 6px;
+}
+
+.features-box__data {
+    font-size: 40px;
+}
+
+.features-box__title {
+    font-size: 14px;
+}
+
+.input-bar {
+    margin-bottom: 12px;
 }

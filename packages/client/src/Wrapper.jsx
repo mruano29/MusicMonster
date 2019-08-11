@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
-import Input from "./components/Input.jsx";
+import { Input } from "components";
 import SearchResults from './components/SearchResults.jsx'
 import TrackFeatures from "./components/TrackFeatures.jsx";
 
@@ -29,7 +29,7 @@ class Wrapper extends Component {
 
     onClick(e) {
       this.setState({
-        trackId: e.target.attributes.value.value
+        trackId: e.currentTarget.attributes.value.value
       });
     }
 
@@ -49,7 +49,7 @@ class Wrapper extends Component {
     return (
       <div className="wrapper">
         <div className="input-bar">
-          <Input onKeyDown={this.onKeyDown} />
+          <Input onKeyDown={this.onKeyDown} placeholder="Search for songs"/>
         </div>
         <Query query={tokenQuery}>
           {({ loading, error, data }) => {

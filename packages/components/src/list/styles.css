@@ -1,0 +1,11 @@
+.list-wrapper--list-item {
+    padding: 20px;
+    margin-bottom: 2px;
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+.list-wrapper--list-item:hover {
+    box-shadow: 0 3px #eee;
+}

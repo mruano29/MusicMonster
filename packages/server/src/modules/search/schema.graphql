@@ -71,8 +71,9 @@ type artistItem {
 
 type trackFeatures {
     duration_ms: Int
-    key: Int
-    mode: Int
+    duration: String
+    key: String
+    mode: String
     time_signature: Int
     acousticness: Float
     danceability: Float

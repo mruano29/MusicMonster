@@ -2,7 +2,7 @@
 
 exports[`Button renders correctly 1`] = `
 .c0 {
-  background: red;
+  background: green;
   color: #fff;
   border-radius: 4px;
   cursor: pointer;

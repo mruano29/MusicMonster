@@ -11,5 +11,9 @@
         "nodemon": "^1.19.1",
         "require-graphql-file": "^1.0.1"
     },
-    "peerDependencies": {}
+    "devDependencies": {
+        "@configs/eslint": "*",
+        "eslint": "^6.1.0",
+        "eslint-plugin-import": "^2.18.2"
+    }
 }

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders correctly 1`] = `
+<div>
+  <label />
+  <input
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+    value=""
+  />
+</div>
+`;

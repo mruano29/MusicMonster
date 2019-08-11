@@ -1,3 +1,6 @@
+const { msToMS } = require('../../utils/utils');
+const contants = require('../../utils/constants');
+
 const resolvers = {
     Query: {
         search: async (parent, args, context, info) => {
@@ -8,12 +11,17 @@ const resolvers = {
         },
         trackFeatures: async (parent, args, context, info) => {
             context.token = args.token;
-            console.log(args.token)
             const res = await context.dataSources.searchAPI.trackFeatures(
               args.trackId
             );
 
-            return res;
+            return {
+                ...res,
+                duration: msToMS(res.duration_ms),
+                key: contants.KEY[res.key],
+                mode: contants.MODE[res.mode]
+
+            };
         },
     }
 };

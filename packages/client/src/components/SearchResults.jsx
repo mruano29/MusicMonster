@@ -40,14 +40,16 @@ class SearchResults extends Component {
                     if (error) return <p>Error :(</p>;
                     return (
                         <div className="search-results">
-                            {data.search.tracks.items.map((v, index) => {
+                            {data.search.tracks.items.map(v => {
                                 return (
                                     <div
+                                        className="search-results-item"
                                         key={v.id}
                                         value={v.id}
                                         onClick={onClick}
-                                    >
-                                        {`track: ${v.name} | artist: ${v.artists[0].name}`}
+                                    > 
+                                      <div className="search-results-item__song">{v.name}</div>
+                                      <div className="search-results-item__artist">{`${v.artists[0].name} | ${v.album.name}`}</div>  
                                     </div>
                                 );
                             })}
