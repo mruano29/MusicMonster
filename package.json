@@ -12,7 +12,8 @@
     "coverage": "jest --coverage",
     "unit": "jest",
     "start:client": "cd packages/client && webpack-dev-server --open --mode development",
-    "build:client": "cd packages/client && webpack --mode production "
+    "build:client": "cd packages/client && webpack --mode production ",
+    "start:dev": "concurrently --kill-others-on-fail 'yarn start:server' 'yarn start:client'"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -38,6 +39,7 @@
     "webpack": "^4.34.0"
   },
   "dependencies": {
+    "concurrently": "^5.0.0",
     "dotenv": "^8.0.0",
     "graphql": "^14.3.1"
   }
