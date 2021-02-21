@@ -4,38 +4,32 @@ import { gql } from "apollo-boost";
 
 import "../styles.css";
 
-class trackFeatures extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { trackId, token } = this.props;
-
-      const trackFeatures = gql`
-        query trackFeatures($trackId: String!, $token: String!) {
-            trackFeatures(trackId: $trackId, token: $token) {
-            # duration_ms
-            duration
-            key
-            mode
-            time_signature
-            # acousticness
-            # danceability
-            energy
-            # instrumentalness
-            # liveness
-            loudness
-            # speechiness
-            # valence
-            tempo
-            # id
-            # uri
-            # track_href
-            # analysis_url
-            # type
-            }
-        }
+const trackFeatures = ({ trackId, token }) => {
+  
+    const trackFeatures = gql`
+      query trackFeatures($trackId: String!, $token: String!) {
+          trackFeatures(trackId: $trackId, token: $token) {
+          # duration_ms
+          duration
+          key
+          mode
+          time_signature
+          # acousticness
+          # danceability
+          energy
+          # instrumentalness
+          # liveness
+          loudness
+          # speechiness
+          # valence
+          tempo
+          # id
+          # uri
+          # track_href
+          # analysis_url
+          # type
+          }
+      }
     `;
 
     return (
@@ -59,7 +53,7 @@ class trackFeatures extends Component {
             }}
         </Query>
     );
-  }
+  
 }
 
 export default trackFeatures;
