@@ -12,9 +12,19 @@ const Wrapper = () => {
   const [trackId, setTrackId] = useState("");
   const [token, setToken] = useState(null);
 
+  const [authorized, setAuthorized] = useState(null);
+
     const tokenQuery = gql`
       {
         authToken {
+          access_token
+        }
+      }
+    `;
+
+    const AuthQuery = gql`
+      {
+        authorize {
           access_token
         }
       }
@@ -56,37 +66,65 @@ const Wrapper = () => {
     //   player.connect();
     // };
   }, [token])
+
+  // const authenticate = () => {
+
+  // }
+
+  const LoginFields = () => {
+    console.log("login fields");
+    setAuthorized(true)
+    return <Query query={AuthQuery}>
+      {({ loading, error, data }) => {
+        console.log("auth data", data)
+        console.log("auth error", error)
+        console.log("auth loading", loading)
+        return <div>joder</div>
+      }}
+    </Query>
+  }
     
   return (
     <div className="wrapper">
-      <div className="input-bar">
-        <Input onKeyDown={(e) => {
-          setSearch(e);
-          setTrackId("");
-        }} placeholder="Search for songs"/>
-      </div>
-      <Query query={tokenQuery}>
-        {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
-          if (error) return <p>Error :(</p>;
-          // token = data.authToken.access_token;
-          setToken(data.authToken.access_token);
-          return (
-            <div className="response-containers">
-              <SearchResults
-                token={token}
-                search={search}
-                onClick={(e) => {
-                  setTrackId(e.currentTarget.attributes.value.value)
-                }}
-              />
-              {trackId && (
-                <TrackFeatures token={token} trackId={trackId} />
-              )}
-            </div>
-          );
-        }}
-      </Query>
+      {authorized ? 
+      <>
+        <div className="wrapper-header">
+          <button onClick={() => setAuthorized(false)}>Log Out</button>
+        </div>
+        <div className="input-bar">
+          <Input onKeyDown={(e) => {
+            setSearch(e);
+            setTrackId("");
+          }} placeholder="Search for songs"/>
+        </div>
+        <Query query={tokenQuery}>
+          {({ loading, error, data }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>Error :(</p>;
+            // token = data.authToken.access_token;
+            setToken(data.authToken.access_token);
+            return (
+              <div className="response-containers">
+                <SearchResults
+                  token={token}
+                  search={search}
+                  onClick={(e) => {
+                    setTrackId(e.currentTarget.attributes.value.value)
+                  }}
+                />
+                {trackId && (
+                  <TrackFeatures token={token} trackId={trackId} />
+                )}
+              </div>
+            );
+          }}
+        </Query>
+      </>
+      : <div>
+          <button onClick={() => LoginFields()}>Click here to log in your Spotify Account</button>
+          <div>If you dont want to log in you will get only a reduced set of features <button onClick={() => setAuthorized(true)}>Click here to work without authentication</button></div>
+        </div>
+      }
     </div>
   );
 }

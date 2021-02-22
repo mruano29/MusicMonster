@@ -1,8 +1,15 @@
 type Query {
   authToken: authToken
+  authorize: authorize
 }
 
 type authToken {
+  access_token: String
+  token_type: String
+  expires_in: Int
+}
+
+type authorize {
   access_token: String
   token_type: String
   expires_in: Int

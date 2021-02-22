@@ -57,3 +57,10 @@ body {
 .input-bar {
     margin-bottom: 12px;
 }
+
+.wrapper-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}

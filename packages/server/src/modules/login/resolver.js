@@ -1,8 +1,14 @@
 const resolvers = {
   Query: {
     authToken: async (parent, args, context, info) => {
-      const res = await context.dataSources.authAPI.getAuth();
+      const res = await context.dataSources.authAPI.getAccessToken();
       console.log("authToken res", res.access_token);
+      context.token = res.access_token;
+      return res;
+    },
+    authorize: async (parent, args, context, info) => {
+      const res = await context.dataSources.authAPI.getAuthentication();
+      console.log("authorize res", res);
       context.token = res.access_token;
       return res;
     }
