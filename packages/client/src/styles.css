@@ -28,6 +28,9 @@ body {
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
+    padding: 40px;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 
 .search-results-item {

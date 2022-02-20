@@ -1,5 +1,5 @@
 const { msToMS } = require('../../utils/utils');
-const contants = require('../../utils/constants');
+const constants = require('../../utils/constants');
 
 const resolvers = {
     Query: {
@@ -18,8 +18,8 @@ const resolvers = {
             return {
                 ...res,
                 duration: msToMS(res.duration_ms),
-                key: contants.KEY[res.key],
-                mode: contants.MODE[res.mode]
+                key: constants.KEY[res.key],
+                mode: constants.MODE[res.mode]
 
             };
         },
