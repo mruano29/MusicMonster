@@ -9,19 +9,19 @@ const trackFeatures = ({ trackId, token }) => {
     const trackFeatures = gql`
       query trackFeatures($trackId: String!, $token: String!) {
           trackFeatures(trackId: $trackId, token: $token) {
-          # duration_ms
+          duration_ms
           duration
           key
           mode
           time_signature
-          # acousticness
-          # danceability
+          acousticness
+          danceability
           energy
-          # instrumentalness
-          # liveness
+          instrumentalness
+          liveness
           loudness
-          # speechiness
-          # valence
+          speechiness
+          valence
           tempo
           # id
           # uri
